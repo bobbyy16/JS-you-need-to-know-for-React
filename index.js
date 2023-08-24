@@ -3,6 +3,11 @@
 // Objects
 // Map, Filter...
 // Async-Await, Promises, Fetch
+//  What is the DOM? -> virtual dom
+//  Import / Export Notation
+//  Optional Chaining
+//  Template Literals
+
 
 // normal functions
 
@@ -106,4 +111,11 @@ const max = arr.reduce((max, cur) => {
 
 console.log(max);
 
-//  Asyn-await, promise, fetch
+// fetch, Asyn-await, promise, callback, eventloop
+
+// you can just use fetch to fetch data from the api
+
+const data = fetch('dummyData.json');
+
+console.log(data.Person.name);
+
