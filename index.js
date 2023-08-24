@@ -119,3 +119,104 @@ const data = fetch('dummyData.json');
 
 console.log(data.Person.name);
 
+// async 
+async function fetchData() {
+    try {
+      const response = await fetch('https://api.example.com/data');
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('An error occurred:', error);
+      throw error;
+    }
+  }
+
+//   await is used to wait for the fetch operation and the parsing of JSON data. The function will not proceed to the next line until these operations are completed.
+
+// Callbacks are functions in JavaScript that are passed as arguments to other functions and are executed after the completion of some asynchronous operation.
+
+function fetchData(url, callback) {
+    // Simulate an asynchronous operation (e.g., fetching data from a server)
+    setTimeout(() => {
+      const data = { name: 'John', age: 30 };
+      callback(data);
+    }, 1000);
+  }
+  
+  function processData(data) {
+    console.log('Received data:', data);
+  }
+  
+  fetchData('https://example.com/api/data', processData);
+//   processData is a callback function that gets executed when the fetchData function completes its asynchronous operation and calls the callback function.
+
+// Callback hell occurs when you have multiple nested callback functions within other callback functions, making your code deeply nested and difficult to read. This often happens when dealing with multiple asynchronous operations that depend on the results of previous operations.
+
+readFile('file1.txt', (error, data1) => {
+    if (error) {
+      handleError(error);
+    } else {
+      processFile1(data1, (error, result1) => {
+        if (error) {
+          handleError(error);
+        } else {
+          writeFile('file2.txt', result1, (error) => {
+            if (error) {
+              handleError(error);
+            } else {
+              readFile('file2.txt', (error, data2) => {
+                if (error) {
+                  handleError(error);
+                } else {
+                  processFile2(data2, (error, result2) => {
+                    if (error) {
+                      handleError(error);
+                    } else {
+                      console.log('Final result:', result2);
+                    }
+                  });
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+  });
+
+//   to overcome this we have promises
+
+// Promises in JavaScript provide a way to work with asynchronous operations in a more organized and manageable manner
+
+function getUsers() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve([
+          { username: 'john', email: 'john@test.com' },
+          { username: 'jane', email: 'jane@test.com' },
+        ]);
+      }, 1000);
+    });
+  }
+  
+  const promise = getUsers();
+  
+  promise.then((users) => {
+    console.log(users);
+  });
+
+//   you can also use then catch method 
+const render = () => {
+    //...
+  };
+  
+  getUsers()
+    .then((users) => {
+      console.log(users);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+      render();
+    }); //To remove this duplicate and execute the render() whether the promise is fulfilled or rejected, you use the finally() method
