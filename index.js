@@ -3,10 +3,7 @@
 // Objects
 // Map, Filter...
 // Async-Await, Promises, Fetch
-//  What is the DOM? -> virtual dom
-//  Import / Export Notation
-//  Optional Chaining
-//  Template Literals
+
 
 
 // normal functions
